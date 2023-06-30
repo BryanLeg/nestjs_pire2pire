@@ -10,7 +10,7 @@ export class TrainingEntity {
     @Column({name: "training_title", type: "varchar"})
     title: string
     
-    @ManyToMany(() => UserEntity, (author) => author.id)
+    @ManyToMany(() => UserEntity, (author) => author.id, {cascade: true})
     @JoinTable({name: "training_authors",
     joinColumn: {
         name: "training_id",
@@ -21,9 +21,9 @@ export class TrainingEntity {
         referencedColumnName: "id"
     }
     })
-    authors: UserEntity[]
+    authors?: UserEntity[]
 
-    @ManyToMany(() => CourseEntity, (course) => course.id)
+    @ManyToMany(() => CourseEntity, (course) => course.id, {cascade: true})
     @JoinTable({name: "training_courses",
     joinColumn: {
         name: "training_id",

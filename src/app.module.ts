@@ -16,6 +16,7 @@ import { TrainingEntity } from './training/entity/training.entity/training.entit
 import { LessonEntity } from './lesson/entity/lesson.entity/lesson.entity';
 import { TagCourseEntity } from './tag_course/entity/tag_course.entity/tag_course.entity';
 import { TagLessonEntity } from './tag_lesson/entity/tag_lesson.entity/tag_lesson.entity';
+import { TrainingAuthorsEntity } from './foreign_tables/entities/training_authors.entity';
 
 @Module({
   imports: [
@@ -26,7 +27,7 @@ import { TagLessonEntity } from './tag_lesson/entity/tag_lesson.entity/tag_lesso
       username: 'postgres',
       password: 'yukionna',
       database: 'p2p_db',
-      entities: [UserEntity, RoleEntity, CourseEntity, TrainingEntity, LessonEntity, TagCourseEntity, TagLessonEntity],
+      entities: [UserEntity, RoleEntity, CourseEntity, TrainingEntity, LessonEntity, TagCourseEntity, TagLessonEntity, TrainingAuthorsEntity],
       synchronize: true,
     }),
     UserModule,
