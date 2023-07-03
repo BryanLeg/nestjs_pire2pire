@@ -24,7 +24,7 @@ export class UserEntity {
     role: RoleEntity
 
     @ManyToMany(() => TrainingEntity, (training) => training.authors)
-    trainingsFollowed?: TrainingEntity[]
+    trainingsCreated?: TrainingEntity[]
     
     @ManyToMany(() => CourseEntity, (course) => course.authors)
     coursesFollowed: CourseEntity[]

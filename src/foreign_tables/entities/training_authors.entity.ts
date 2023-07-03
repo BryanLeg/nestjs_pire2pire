@@ -16,7 +16,7 @@ export class TrainingAuthorsEntity {
     trainings: TrainingEntity[]
 
     @ManyToOne(() => UserEntity,
-    user => user.trainingsFollowed)
+    user => user.trainingsCreated)
     @JoinColumn([{name: "user_id", referencedColumnName: "id"}])
     user : UserEntity[]
 }

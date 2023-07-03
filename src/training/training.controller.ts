@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { TrainingService } from './training.service';
 import { TrainingDto } from './dto/training.dto/training.dto';
 
@@ -10,5 +10,10 @@ export class TrainingController {
     @Post()
     async create(@Body() training: TrainingDto): Promise<TrainingDto> {
         return this.trainingService.create(training)
+    }
+
+    @Get()
+    async findAll() {
+        return this.trainingService.findAll()
     }
 }

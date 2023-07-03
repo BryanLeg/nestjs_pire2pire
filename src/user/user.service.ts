@@ -26,7 +26,7 @@ export class UserService {
 
     findAll(): Promise<UserDto[]> {
         return this.userRepository.find({
-            relations: ["role"]
+            relations: ["role", "trainingsCreated"]
         })
     }
 

@@ -6,9 +6,10 @@ import { TrainingEntity } from './entity/training.entity/training.entity';
 import { CourseEntity } from 'src/course/entity/course.entity/course.entity';
 import { LessonEntity } from 'src/lesson/entity/lesson.entity/lesson.entity';
 import { TrainingAuthorsEntity } from 'src/foreign_tables/entities/training_authors.entity';
+import { TrainingCoursesEntity } from 'src/foreign_tables/entities/training_courses.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TrainingEntity, CourseEntity, LessonEntity, TrainingAuthorsEntity])],
+  imports: [TypeOrmModule.forFeature([TrainingEntity, CourseEntity, LessonEntity, TrainingAuthorsEntity, TrainingCoursesEntity])],
   controllers: [TrainingController],
   providers: [TrainingService]
 })

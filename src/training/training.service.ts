@@ -8,6 +8,7 @@ import { CourseEntity } from 'src/course/entity/course.entity/course.entity';
 import { LessonEntity } from 'src/lesson/entity/lesson.entity/lesson.entity';
 import { LessonDto } from 'src/lesson/dto/lesson.dto/lesson.dto';
 import { TrainingAuthorsEntity } from 'src/foreign_tables/entities/training_authors.entity';
+import { TrainingCoursesEntity } from 'src/foreign_tables/entities/training_courses.entity';
 
 @Injectable()
 export class TrainingService {
@@ -22,8 +23,13 @@ export class TrainingService {
         private lessonRepository: Repository<LessonEntity>,
         
         @InjectRepository(TrainingAuthorsEntity)
-        private trainingAuthorsRepository: Repository<TrainingAuthorsEntity>
+        private trainingAuthorsRepository: Repository<TrainingAuthorsEntity>,
+
+        @InjectRepository(TrainingCoursesEntity)
+        private trainingCoursesRepository:
+        Repository<TrainingCoursesEntity>
         ) {}
+
     async create(training: TrainingDto): Promise<TrainingDto> {
         const newTraining = this.trainingRepository.create(training)
         await this.trainingRepository.save(newTraining)
@@ -39,6 +45,15 @@ export class TrainingService {
         const trainingAuthors = this.trainingAuthorsRepository.create({"trainingId": newTraining.id, "userId": training.userId})
         await this.trainingAuthorsRepository.save(trainingAuthors)
 
+        const trainingCourses = this.trainingCoursesRepository.create({"courseId": newCourse.id, "trainingId": newTraining.id})
+        await this.trainingCoursesRepository.save(trainingCourses)
+
         return training
+    }
+
+    findAll() {
+        return this.trainingRepository.find({
+            relations: ["courses", "authors"]
+        })
     }
 }
