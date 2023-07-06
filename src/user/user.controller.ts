@@ -1,13 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDto } from './dto/create-user.dto';
-import { RoleDto } from 'src/role/dto/role.dto/role.dto';
-import { RoleService } from 'src/role/role.service';
 
 @Controller('users')
 export class UserController {
-    constructor(private userService: UserService,
-        private roleService: RoleService
+    constructor(private userService: UserService
         ) {}
 
     @Post()
